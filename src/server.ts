@@ -28,7 +28,7 @@ import OboClient from './obo-client.js';
  * @param httpOption - The HTTP option value (string or boolean)
  * @returns Object with host (undefined if not specified) and port number
  */
-function function parseHttpOption(httpOption: string | boolean): { host: string | undefined; port: number } {
+function parseHttpOption(httpOption: string | boolean): { host: string | undefined; port: number } {
   const defaultPort = parseInt(process.env.PORT || '', 10) || 3000;
 
   if (typeof httpOption === 'boolean') {
