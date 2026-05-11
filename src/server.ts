@@ -28,23 +28,23 @@ import OboClient from './obo-client.js';
  * @param httpOption - The HTTP option value (string or boolean)
  * @returns Object with host (undefined if not specified) and port number
  */
-function parseHttpOption(httpOption: string | boolean): { host: string | undefined; port: number } {
+function function parseHttpOption(httpOption: string | boolean): { host: string | undefined; port: number } {
+  const defaultPort = parseInt(process.env.PORT || '', 10) || 3000;
+
   if (typeof httpOption === 'boolean') {
-    return { host: undefined, port: 3000 };
+    return { host: undefined, port: defaultPort };
   }
 
   const httpString = httpOption.trim();
 
-  // Check if it contains a colon (host:port format)
   if (httpString.includes(':')) {
     const [hostPart, portPart] = httpString.split(':');
-    const host = hostPart || undefined; // Empty string becomes undefined
-    const port = parseInt(portPart) || 3000;
+    const host = hostPart || undefined;
+    const port = parseInt(portPart) || defaultPort;
     return { host, port };
   }
 
-  // No colon, treat as port only
-  const port = parseInt(httpString) || 3000;
+  const port = parseInt(httpString) || defaultPort;
   return { host: undefined, port };
 }
 
