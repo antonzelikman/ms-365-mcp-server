@@ -194,7 +194,8 @@ class MicrosoftGraphServer {
 
       const app = express();
       app.set('trust proxy', true);
-      app.use(express.json());
+      // Express defaults to 100 KB, which refused full HTML newsletter drafts (HTTP 413); 1 MB leaves ample room.
+      app.use(express.json({ limit: '1mb' }));
       app.use(express.urlencoded({ extended: true }));
 
       // Add CORS headers for all routes
